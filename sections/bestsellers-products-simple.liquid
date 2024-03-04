@@ -35,6 +35,28 @@
  assign collection = current_product.collections.first
 -%}
 
+{% comemnt %}
+{%- liquid
+  assign current_product = product
+  assign highest_products_count = 0
+  assign collection_with_most_products = null
+
+  if collection == null or collection.handle == 'frontpage' or collection.handle == 'all'
+    for c in product.collections
+      if c.handle != 'frontpage' and c.handle != 'all' and c.all_products_count > 1
+        if c.products_count > highest_products_count
+          assign highest_products_count = c.products_count
+          assign collection_with_most_products = c
+        endif
+      endif
+    endfor
+    if collection_with_most_products != null
+      assign collection = collection_with_most_products
+    endif
+  endif
+-%}
+{% endcomment %}
+
 
 {% if collection and collection.products_count > 1 %}
 

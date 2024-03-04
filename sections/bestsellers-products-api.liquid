@@ -37,6 +37,29 @@
 -%}
 
 
+{% comemnt %}
+{%- liquid
+  assign current_product = product
+  assign highest_products_count = 0
+  assign collection_with_most_products = null
+
+  if collection == null or collection.handle == 'frontpage' or collection.handle == 'all'
+    for c in product.collections
+      if c.handle != 'frontpage' and c.handle != 'all' and c.all_products_count > 1
+        if c.products_count > highest_products_count
+          assign highest_products_count = c.products_count
+          assign collection_with_most_products = c
+        endif
+      endif
+    endfor
+    if collection_with_most_products != null
+      assign collection = collection_with_most_products
+    endif
+  endif
+-%}
+{% endcomment %}
+
+
 {% if collection and collection.products_count > 1 %}
   {%- liquid
     assign limit_js = section.settings.max_limit | plus: 0
@@ -259,22 +282,6 @@ connectedCallback() {
 }
 
 customElements.define('bestsellers-products', BestsellersProducts);
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Select the swiper-container or specific swiper instance
-  const swiperContainers = document.querySelectorAll('swiper-container');
-
-  swiperContainers.forEach(container => {
-    // If the swiper buttons are in the light DOM, directly within .swiper-container
-    const nextButtonsSvg = container.querySelectorAll('div[part="button-next"] svg');
-    const prevButtonsSvg = container.querySelectorAll('div[part="button-prev"] svg');
-
-    // Apply the width style to SVG elements
-    [...nextButtonsSvg, ...prevButtonsSvg].forEach(svg => {
-      svg.style.width = '1.2rem';
-    });
-  });
-});
 
 </script>
 
