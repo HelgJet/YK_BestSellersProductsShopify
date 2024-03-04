@@ -1,0 +1,58 @@
+swiper-container::part(button-prev), swiper-container .swiper-button-next, swiper-container::part(button-next), swiper-container .swiper-button-prev {
+  width: 6.4rem;
+  height: 6.4rem;
+  background-color: #fff;
+  border-radius: 50%;
+  color: #000;
+  top: 35%;
+}
+swiper-container::part(button-prev) {
+  left: 5%;
+}
+swiper-container::part(button-next) {
+  right: 5%;
+}
+
+.bestseller-products .swiper-hidden {
+  position: relative;
+  padding-left: 1.6rem;
+}
+.bestseller-products .swiper-button-next,
+.bestseller-products .swiper-button-prev {
+  width: 6.4rem;
+  height: 6.4rem;
+  background-color: #fff;
+  border-radius: 50%;
+  color: #000;
+  box-shadow: none;
+  border: none;
+  top: 42%;
+  position: absolute;
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+}
+.bestseller-products .swiper-button-next svg,
+.bestseller-products .swiper-button-prev svg {
+  width: 1.2rem;
+}
+.bestseller-products .swiper-button-next.swiper-button-prev svg path,
+.bestseller-products .swiper-button-prev.swiper-button-prev svg path {
+  transform-origin: center center;
+  transform: rotate(180deg);
+}
+.bestseller-products .swiper-button-next:hover,
+.bestseller-products .swiper-button-prev:hover {
+  opacity: 0.88;
+}
+.bestseller-products .swiper-button-next, .bestseller-products .swiper-rtl .swiper-button-prev {
+  left: auto;
+  right: 5%;
+}
+.bestseller-products .swiper-button-prev, .bestseller-products .swiper-rtl .swiper-button-next {
+  right: auto;
+  left: 5%;
+}
