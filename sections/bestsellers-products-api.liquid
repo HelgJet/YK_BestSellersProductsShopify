@@ -240,7 +240,7 @@ connectedCallback() {
     const requests = handles.map(handle => this.fetchProductHTML(handle));
     try {
       const responses = await Promise.all(requests);
-      const itemProducts = responses.map((item, index) => `<swiper-slide id="Slide-${this.selectors.sectionId}-${index + 1}" class="swiper-slide">${item}</swiper-slide>`).join('');
+      const itemProducts = responses.map((item, index) => `<swiper-slide lazy="true" id="Slide-${this.selectors.sectionId}-${index + 1}" class="swiper-slide">${item}</swiper-slide>`).join('');
       this.slider.innerHTML = '';
       this.classList.add('bestsellers--loaded');
       this.slider.innerHTML = itemProducts;

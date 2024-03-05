@@ -107,7 +107,7 @@
                       {% endif %}
                     {% endfor %}  
                     {% else %}
-                    <swiper-slide>
+                    <swiper-slide lazy="true">
                       {% render 'card-product', card_product: prod, media_aspect_ratio: 'portrait' %}
                     </swiper-slide>
                   {% endif %}
